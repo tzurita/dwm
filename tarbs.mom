@@ -72,6 +72,7 @@ On the right, you'll see various system status notifiers, the date, volume, even
 Each module on the right of the status bar is a script located in \f(CW~/.local/bin/statusbar/\fP.
 You can see what they do and modify them from there.
 I'm sure you can figure it out.
+You can also right click on the module to see what it does.
 .PP
 The program dwmblocks is what is run to generate the statusbar from those scripts.
 You can edit its config/source code in \f(CW~/.local/src/dwmblocks/\fP to tell it what scripts/commands you want it to display.
@@ -111,25 +112,31 @@ To type capital letters, hold down the \f(CWShift\fP key\(emthat might sound lik
 \f(CWMod+Shift+Space\fP \(en Make a window float (move and resize with \f(CWMod+\fPleft/right click).
 .ITEM
 \f(CWMod+b\fP \(en Toggle status bar
-.ITEM
-\f(CWMod+B\fP \(en Toggle window float in bottom left corner (good for video watched intermittently)
-.ITEM
-\f(CWMod+N\fP \(en Same as above, but for the bottom right corner.
 .LIST OFF
 .HEADING 2 "Window layouts"
 .LI
 .ITEM
 \f(CWMod+t\fP \(en Tiling mode (active by default)
 .ITEM
+\f(CWMod+T\fP \(en Bottom stack mode (just like tiling, but master is on top)
+.ITEM
 \f(CWMod+f\fP \(en Fullscreen mode
 .ITEM
-\f(CWMod+y\fP \(en Fibbonacci mode (similar to tiling mode)
+\f(CWMod+F\fP \(en Floating (AKA normie) mode
 .ITEM
-\f(CWMod+u\fP \(en Center the master window
+\f(CWMod+y\fP \(en Fibbonacci spiral mode
 .ITEM
-\f(CWMod+o\fP \(en Center and float the master window
+\f(CWMod+Y\fP \(en Dwindle mode (similar to Fibonacci)
 .ITEM
-\f(CWMod+i/I\fP \(en Increase/decrease the number of master windows
+\f(CWMod+u\fP \(en Master on left, other windows in monocle mode
+.ITEM
+\f(CWMod+U\fP \(en Monocle mode (all windows fullscreen and cycle through)
+.ITEM
+\f(CWMod+i\fP \(en Center the master window
+.ITEM
+\f(CWMod+I\fP \(en Center and float the master window
+.ITEM
+\f(CWMod+o/O\fP \(en Increase/decrease the number of master windows
 .LIST OFF
 .HEADING 2 "Basic Programs"
 .LI
@@ -144,7 +151,7 @@ To type capital letters, hold down the \f(CWShift\fP key\(emthat might sound lik
 .ITEM
 \f(CWMod+n\fP \(en newsboat (RSS feed reader)
 .ITEM
-\f(CWMod+a\fP \(en alsamixer (audio system control)
+\f(CWMod+a\fP \(en pulsemixer (audio system control)
 .ITEM
 \f(CWMod+W\fP \(en nmtui (for connecting to wireless internet)
 .ITEM
@@ -155,23 +162,13 @@ To type capital letters, hold down the \f(CWShift\fP key\(emthat might sound lik
 .HEADING 2 "System"
 .LI
 .ITEM
-\f(CWMod+x\fP \(en Lock screen (Enter password to return)
-.ITEM
-\f(CWMod+X\fP \(en Shutdown (will ask to confirm)
-.ITEM
-\f(CWMod+Shift+Backspace\fP \(en Reboot (will ask to confirm)
-.ITEM
-\f(CWMod+Shift+Escape\fP \(en Exit the graphical environment (will ask to confirm)
+\f(CWMod+BackSpace\fP \(enChoose to lock screen, logout, shutdown, reboot, etc.
 .ITEM
 \f(CWMod+V\fP \(en Toggle xcompmgr (to remove transparency and window effects)
 .ITEM
-\f(CWMod+F1\fP \(en Shows this document
-.ITEM
-\f(CWMod+F2\fP \(en Restart dwm (makes active any changes you've made to dwm)
+\f(CWMod+F1\fP \(en Show this document
 .ITEM
 \f(CWMod+F3\fP \(en Select screen/display to use
-.ITEM
-\f(CWMod+F4\fP \(en Hibernate (will ask to confirm)
 .ITEM
 \f(CWMod+F5\fP \(en Update dwm's colorscheme if you have changed Xresources
 .ITEM
@@ -216,7 +213,7 @@ I use ncmpcpp as a music player, which is a front end for mpd.
 .ITEM
 \f(CWMod+]\fP \(en Forward 10 seconds (holding shift increases amount)
 .ITEM
-\f(CWMod+a\fP \(en alsamixer (general volume sink/source control)
+\f(CWMod+a\fP \(en pulsemixer (general volume sink/source control)
 .LIST OFF
 .HEADING 2 "Tags/Workspaces"
 .PP
@@ -232,6 +229,10 @@ There are nine tags, active tags are highlighted in the top left.
 \f(CWMod+g\fP \(en Go to left tag
 .ITEM
 \f(CWMod+;\fP \(en Go to right tag
+.ITEM
+\f(CWMod+Left\fP \(en Move to workspace to the left
+.ITEM
+\f(CWMod+Right\fP \(en Move to workspace to the right
 .LIST OFF
 .HEADING 2 "Recording"
 .PP
@@ -271,9 +272,8 @@ As mentioned above, TARBS makes some keyboard changes with the \f(CWremaps\fP sc
 These settings may override your preferred settings, so you should open this file and comment out troublesome lines if you have issues.
 .HEADING 2 "My audio isn't working!"
 .PP
-On fresh install, the Linux audio system (ALSA) often mutes outputs.
-You may want to unbind
-You may also need to set your preferred default output sink which you can do by the command line, or by selecting one with \f(CWalsamixer\fP (\f(CWmod+a\fP).
+On fresh install, the Linux audio system often mutes outputs.
+You may also need to set your preferred default output sink which you can do by the command line, or by selecting one with \f(CWpulsemixer\fP (\f(CWmod+a\fP).
 .HEADING 2 "How do I copy and paste?"
 .PP
 Copying and pasting is always program-specific on any system.
@@ -288,11 +288,9 @@ The script \f(CWsetbg\fP, if run on an image will set it as the persistent backg
 When using the file manager, you can simply hover over an image name and type \f(CWbg\fP and this will run \f(CWsetbg\fP.
 .HEADING 2 "How I change the colorscheme?"
 .PP
-TARBS no longer deploys Xresource by default, but you can still add an \f(CW~/.Xdefaults\fP file and add color settings to change the theme of numerous programs, including the terminal. See
-.PDF_WWW_LINK "https://wiki.archlinux.org/index.php/X_resources" "the Arch Wiki's article"
-for more information.
+TARBS no longer deploys Xresource by default, but check \f(CW~/.config/Xresources\fP for a list of color schemes you can activate or add your own. When you save the file, vim will automatically update the colorscheme. If you'd like these colors activated by default on login, there is a line in \f(CW~/.config/xprofile\fP you can uncomment to allow that.
 .PP
-If you want to use \f(CWwal\fP to automatically generate colorschemes from your wallpapers, just install it and \f(CWsetbg\fP will automatically detect and run it on startup and wallpaper change.
+Or, if you want to use \f(CWwal\fP to automatically generate colorschemes from your wallpapers, just install it and \f(CWsetbg\fP will automatically detect and run it on startup and wallpaper change.
 .HEADING 2 "How do I set up my email?"
 .PP
 TARBS comes with mutt-wizard, which gives the ability to receive and send all your email and keep an offline store of it all in your terminal, without the need for browser.
