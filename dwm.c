@@ -359,6 +359,7 @@ applyrules(Client *c)
 		{
 			c->isterminal = r->isterminal;
 			c->isfloating = r->isfloating;
+			c->noswallow  = r->noswallow;
 			c->tags |= r->tags;
 			if ((r->tags & SPTAGMASK) && r->isfloating) {
 				c->x = c->mon->wx + (c->mon->ww / 2 - WIDTH(c) / 2);
@@ -484,6 +485,8 @@ swallow(Client *p, Client *c)
 {
 	if (c->noswallow || c->isterminal)
 		return;
+	if (!swallowfloating && c->isfloating)
+		return;
 
 	detach(c);
 	detachstack(c);
@@ -498,8 +501,8 @@ swallow(Client *p, Client *c)
 	p->win = c->win;
 	c->win = w;
 	updatetitle(p);
-	arrange(p->mon);
 	XMoveResizeWindow(dpy, p->win, p->x, p->y, p->w, p->h);
+	arrange(p->mon);
 	configure(p);
 	updateclientlist();
 }
@@ -512,12 +515,15 @@ unswallow(Client *c)
 	free(c->swallowing);
 	c->swallowing = NULL;
 
+	/* unfullscreen the client */
+	setfullscreen(c, 0);
 	updatetitle(c);
 	arrange(c->mon);
 	XMapWindow(dpy, c->win);
 	XMoveResizeWindow(dpy, c->win, c->x, c->y, c->w, c->h);
-	configure(c);
 	setclientstate(c, NormalState);
+	focus(NULL);
+	arrange(c->mon);
 }
 
 void

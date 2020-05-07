@@ -69,7 +69,7 @@ This setting can be changed if you don't like it by deleting or commenting out t
 .PP
 To the left, you'll see the numbers of your current workspace/tag(s).
 On the right, you'll see various system status notifiers, the date, volume, even music and local weather if possible, etc.
-Each module on the right of the status bar is a script located in \f(CW~/.local/bin/statusbar/\fP.
+Each module on the right of the statusbar is a script located in \f(CW~/.local/bin/statusbar/\fP.
 You can see what they do and modify them from there.
 I'm sure you can figure it out.
 You can also right click on the module to see what it does.
@@ -105,7 +105,7 @@ To type capital letters, hold down the \f(CWShift\fP key\(emthat might sound lik
 .ITEM
 \f(CWMod+h/l\fP \(en Change width of master window
 .ITEM
-\f(CWMod+z/Z\fP \(en Increase/decrease gaps (may also hold \f(CWMod\fP and scroll mouse)
+\f(CWMod+z/x\fP \(en Increase/decrease gaps (may also hold \f(CWMod\fP and scroll mouse)
 .ITEM
 \f(CWMod+a\fP \(en Toggle gaps
 .ITEM
@@ -115,7 +115,7 @@ To type capital letters, hold down the \f(CWShift\fP key\(emthat might sound lik
 .ITEM
 \f(CWMod+s\fP \(en Make/unmake a window "sticky" (follows you from tag to tag)
 .ITEM
-\f(CWMod+S\fP \(en Toggle status bar (may also middle click on desktop)
+\f(CWMod+b\fP \(en Toggle statusbar (may also middle click on desktop)
 .LIST OFF
 .HEADING 2 "Window layouts"
 .LI
@@ -151,7 +151,7 @@ To type capital letters, hold down the \f(CWShift\fP key\(emthat might sound lik
 .ITEM
 \f(CWMod+e\fP \(en neomutt (email) \(en Must be first configured by running \f(CWmw add\fP.
 .ITEM
-\f(CWMod+E\fP \(en abook (contacts) \(en Must be first configured by running \f(CWmw add\fP.
+\f(CWMod+E\fP \(en abook (contacts, addressbook, emails)
 .ITEM
 \f(CWMod+m\fP \(en ncmpcpp (music player)
 .ITEM
@@ -173,8 +173,6 @@ To type capital letters, hold down the \f(CWShift\fP key\(emthat might sound lik
 .LI
 .ITEM
 \f(CWMod+BackSpace\fP \(enChoose to lock screen, logout, shutdown, reboot, etc.
-.ITEM
-\f(CWMod+D\fP \(en Bring up root terminal
 .ITEM
 \f(CWMod+F1\fP \(en Show this document
 .ITEM
@@ -227,9 +225,9 @@ I use ncmpcpp as a music player, which is a front end for mpd.
 .ITEM
 \f(CWMod++\fP \(en Increase volume (holding shift increases amount)
 .ITEM
-\f(CWMod+[\fP \(en Back 10 seconds (holding shift increases amount)
+\f(CWMod+[\fP \(en Back 10 seconds (holding shift moves by one minute)
 .ITEM
-\f(CWMod+]\fP \(en Forward 10 seconds (holding shift increases amount)
+\f(CWMod+]\fP \(en Forward 10 seconds (holding shift moves by one minute)
 .ITEM
 \f(CWMod+F4\fP \(en pulsemixer (general audio/volume sink/source control)
 .LIST OFF
@@ -244,9 +242,9 @@ There are nine tags, active tags are highlighted in the top left.
 .ITEM
 \f(CWMod+Tab\fP \(en Go to previous tag (may also use \f(CW\\\fP for Tab)
 .ITEM
-\f(CWMod+g\fP \(en Go to left tag
+\f(CWMod+g\fP \(en Go to left tag (hold shift to send window there)
 .ITEM
-\f(CWMod+;\fP \(en Go to right tag
+\f(CWMod+;\fP \(en Go to right tag (hold shift to send window there)
 .ITEM
 \f(CWMod+Left\fP \(en Move to workspace to the left
 .ITEM
@@ -333,7 +331,7 @@ This will overwrite the original config files though, including changes you made
 .HEADING 1 "Contact"
 .LI
 .ITEM
-.PDF_WWW_LINK "mailto:tzurita@gmai.com" "tzurita@gmai.com"
+.PDF_WWW_LINK "mailto:tzurita@gmail.com" "tzurita@gmail.com"
 \(en For questions!
 .ITEM
 .PDF_WWW_LINK "http://tomzurita.com" "https://tomzurita.com"
