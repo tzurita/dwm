@@ -12,7 +12,7 @@ I haven't kept `man dwm`/`dwm.1` updated though. PRs welcome on that, lol.
 
 ## Patches and features
 
-- Clickable statusbar with Luke's build of [dwmblocks](https://github.com/lukesmithxyz/dwmblocks).
+- Clickable statusbar with my build of [dwmblocks](https://github.com/lukesmithxyz/dwmblocks).
 - Reads xresources colors/variables (i.e. works with `pywal`, etc.).
 - scratchpad: Accessible with mod+shift+enter.
 - New layouts: bstack, fibonacci, deck, centered master and more. All bound to keys `super+(shift+)t/y/u/i`.
@@ -22,6 +22,14 @@ I haven't kept `man dwm`/`dwm.1` updated though. PRs welcome on that, lol.
 - shiftview: Cycle through tags (`super+g/;`).
 - vanitygaps: Gaps allowed across all layouts.
 - swallow patch: if a program run from a terminal would make it inoperable, it temporarily takes its place to save space.
+
+## Installation for newbs
+
+```
+git clone https://github.com/tzurita/dwm
+cd dwm
+sudo make install
+```
 
 ## Please install `libxft-bgra`!
 
