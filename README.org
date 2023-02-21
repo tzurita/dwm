@@ -1,0 +1,212 @@
+#+TITLE: dwm
+
+* Table of Contents :toc:
+- [[#about-dwm][About DWM]]
+  - [[#the-patches-i-added-to-this-build-include][The patches I added to this build include:]]
+  - [[#the-dependencies-for-dwm-include][The dependencies for dwm include:]]
+- [[#installing-dwm][Installing dwm]]
+- [[#my-keybindings][My Keybindings]]
+  - [[#main-keybindings][Main keybindings]]
+  - [[#layout-controls][Layout controls]]
+  - [[#application-controls][Application controls]]
+  - [[#system-controls][System controls]]
+  - [[#audio-control][Audio control]]
+  - [[#recording][Recording]]
+  - [[#doom-emacs][Doom Emacs]]
+- [[#running-dwm][Running dwm]]
+- [[#configuring-dwm][Configuring dwm]]
+- [[#adding-an-autostart-file][Adding an autostart file]]
+
+* About DWM
+#+CAPTION: dmenu
+#+ATTR_HTML: :alt dmenu :title dmenu :align left
+[[https://www.dropbox.com/s/w6m0if7r8rng8d9/dwm-desktop.jpg?raw=1]]
+
+Dwm is an extremely fast, small, and dynamic window manager for X. Dwm is created by the good folks at [[https://suckless.org][suckless.org]].  This is my personal build of dwm.  I used a number of patches in this build to make dwm more "sensible" rather than "suckless."
+
+** The patches I added to this build include:
++ [[https://dwm.suckless.org/patches/statuscmd/][Clickable Statusbar]]  : with my build of dwmblocks.
++ [[https://dwm.suckless.org/patches/fullscreen/][Fullscreen]]           : True fullscreen (super+f) and prevents focus shifting.
++ [[https://dwm.suckless.org/patches/hide_vacant_tags/][Hide Vacant Tags]]     : Hide vacant tags hides tags with no windows.
++ [[https://dwm.suckless.org/patches/xresources/][Reads Xresources]]     : colors/variables (i.e. works with pywal, etc.).
++ [[https://dwm.suckless.org/patches/scratchpad/][Scratchpad]]           : Accessible with mod+shift+enter.
++ [[https://dwm.suckless.org/patches/nextprev/][ShiftView]]            : Cycle through tags (super+g / ;).
++ [[https://dwm.suckless.org/patches/stacker/][Stacker]]              : Move windows up the stack manually (super-K / J).
++ [[https://dwm.suckless.org/patches/statuscmd/][Statuscmd]]            : Adds the ability to signal a status monitor program such as dwmblocks the location and button when clicking on the status bar.
++ Shiftview            : shifting tagset left/right
++ [[ dwm.suckless.org/patches/sticky/][Sticky]]               : Windows can be made sticky (super+s).
++ [[https://dwm.suckless.org/patches/swallow/][Swallow Patch]]        : if a program run from a terminal would make it inoperable, it temporarily takes its place to save space.
++ [[https://dwm.suckless.org/patches/vanitygaps/][Vanity Gaps]]          : Gaps allowed across all layouts.
+
+** The dependencies for dwm include:
++ libxft
++ ttf-hack
++ ttf-joypixels
++ st
++ dmenu
++ tabbed
+
+Also, you will need to add the following from the AUR:
++ nerd-fonts-complete (optional)
++ https://aur.archlinux.org/packages/libxft-bgra/ (needed for colored fonts and emojis)
+
+Also, if you are building this on an Ubuntu-based system, you need to install libx11-dev and xorg-dev.
+
+* Installing dwm
+Download the source code from this repository or use a git clone:
+
+#+begin_example
+git clone https://github.com/tzurita/dwm.git
+cd dwm
+sudo make clean install
+#+end_example
+
+=NOTE:= Installing dwm will overwrite your existing dwm installation.
+
+* My Keybindings
+The MODKEY is set to the Super key (aka the Windows key).  I try to keep the keybindings consistent with all of my window managers, but if you several of my window manager configs, there may be some discrepancies between them.
+
+** Main keybindings
+
+| Keybinding             | Action                                                       |
+|------------------------+--------------------------------------------------------------|
+| MODKEY + ENTER         | opens terminal (st but can be easily changed)                |
+| MODKEY + d             | opens run launcher (dmenu but can be changed)                |
+| MODKEY + q             | closes window with focus                                     |
+| MODKEY + SPACE         | make selected window the master or switch master with 2nd    |
+| MODKEY + BACKSPACE     | locks, reboots, shutsdown dwm, etc                           |
+| MODKEY + b             | hides the bar                                                |
+| MODKEY + 1-9           | switch focus to workspace (1-9)                              |
+| MODKEY + SHIFT + 1-9   | send focused window to workspace (1-9)                       |
+| MODKEY + j             | focus stack +1 (switches focus between windows in the stack) |
+| MODKEY + k             | focus stack -1 (switches focus between windows in the stack) |
+| MODKEY + SHIFT + j     | rotate stack +1 (rotates the windows in the stack)           |
+| MODKEY + SHIFT + k     | rotate stack -1 (rotates the windows in the stack)           |
+| MODKEY + h             | setmfact -0.05 (expands size of window)                      |
+| MODKEY + l             | setmfact +0.05 (shrinks size of window)                      |
+| MODKEY + s             | make window sticky                                           |
+| MODKEY + v             | jump to master window                                        |
+| MODKEY + x             | incrgaps -0.03 (decrease gaps )                              |
+| MODKEY + z             | incrgaps +0.03 (increase gaps )                              |
+| MODKEY + .             | focusmon +1 (switches focus next monitors)                   |
+| MODKEY + ,             | focusmon -1 (switches focus to prev monitors)                |
+| MODKEY + SHIFT + LEFT  | move window to another display                               |
+| MODKEY + SHIFT + RIGHT | move window to another display                               |
+
+** Layout controls
+
+| Keybinding             | Action                             |
+|------------------------+------------------------------------|
+| MODKEY + t             | tiling layout (default)            |
+| MODKEY + T             | bottom stack layout                |
+| MODKEY + f             | fullscreen mode                    |
+| MODKEY + F             | floating (aka normie) layout       |
+| MODKEY + y             | fibonacii layout                   |
+| MODKEY + Y             | dwindle  layout                    |
+| MODKEY + u             | master left, others monocle layout |
+| MODKEY + U             | monocole mode layout               |
+| MODKEY + i             | center master layout               |
+| MODKEY + I             | center and float master layout     |
+| MODKEY + o             | increase masters                   |
+| MODKEY + O             | decrease masters                   |
+| MODKEY + TAB           | cycle layout (-1)                  |
+| MODKEY + SHIFT + SPACE | toggle floating windows            |
+
+** Application controls
+
+| Keybinding  | Action                            |
+|-------------+-----------------------------------|
+| MODKEY + r  | lf (file browser/manager)         |
+| MODKEY + R  | htop (file browser/manager)       |
+| MODKEY + w  | open Firefox browser              |
+| MODKEY + W  | nmtui                             |
+| MODKEY + F4 | pulseaudio (audio system control) |
+| MODKEY + D  | passmenu (passwordmanager)        |
+
+** System controls
+
+| Keybinding         | Action                                                       |
+|--------------------+--------------------------------------------------------------|
+| MODKEY + BACKSPACE | choose lock screen, logout, shutdown, reboot, etc            |
+| MODKEY + F1        | show TARBS Document                                          |
+| MODKEY + F2        | watch tutorial vids on a subject                             |
+| MODKEY + F3        | select screen/display to use                                 |
+| MODKEY + F4        | pulsemixer (audio control)                                   |
+| MODKEY + F6        | transmission torrent client (not installed by default)       |
+| MODKEY + F7        | toggle transmission client on/off (not installed by default) |
+| MODKEY + F8        | check mail                                                   |
+| MODKEY + F9        | mount a USB drive/hard Drive or Android                      |
+| MODKEY + F10       | Unmount non-essential drive or Android                       |
+| MODKEY + F11       | view webcam                                                  |
+| MODKEY + F12       | rerun keyboard mapping scripts if new keyboard attached      |
+| MODKEY + `         | select emoji to copy to clipboard                            |
+| MODKEY + INSERT    | show contents of clipboard/primary selection                 |
+
+** Audio control
+
+| Keybinding     | Action                            |
+|----------------+-----------------------------------|
+| MODKEY + M     | mute all audio                    |
+| MODKEY + PLUS  | increase volume                   |
+| MODKEY + MINUS | decrease volume                   |
+| MODKEY + F4    | pulsemixer (audio system control) |
+
+** Recording
+
+| Keybinding           | Action                                              |
+|----------------------+-----------------------------------------------------|
+| PrintScreen          | take a screenshot                                   |
+| SHIFT + PRINTSCREEN  | select area to screenshot                           |
+| MODKEY + PRINTSCREEN | opens dmenu to select kind of audio/video recording |
+| MODKEY + DELETE      | kills any ecoding started in the above way          |
+| MODKEY + C           | toggles webcam in bottom right for screencasting    |
+| MODKEY + SCROLL LOCK | toggle screenkey (if installed) to show keypresses  |
+
+** Doom Emacs
+
+| Keybinding           | Action                                               |
+|----------------------+------------------------------------------------------|
+| MODKEY + e           | emacsclient -c -a 'emacs'                            |
+| MODKEY + CONTROL + d | emacsclient -c -a 'emacs' --eval '(dired nil)'       |
+| MODKEY + CONTROL + m | emacsclient -c -a 'emacs' --eval '(mu4e)'            |
+| MODKEY + CONTROL + b | emacsclient -c -a 'emacs' --eval '(ibuffer)'         |
+| MODKEY + CONTROL + n | emacsclient -c -a 'emacs' --eval '(elfeed)'          |
+| MODKEY + CONTROL + s | emacsclient -c -a 'emacs' --eval '(eshell)'          |
+| MODKEY + CONTROL + v | emacsclient -c -a 'emacs' --eval '(+vterm/here nil)' |
+
+* Running dwm
+If you do not use a login manager (such as lightdm) then you can add the following line to your .xinitrc to start dwm using startx:
+
+=exec dwm=
+
+If you use a login manager (like lightdm), make sure that you have a file called dwm.desktop in your /usr/share/xsessions/ directory.  It should look something like this:
+
+#+begin_example
+[Desktop Entry]
+Encoding=UTF-8
+Name=Dwm
+Comment=Dynamic window manager
+Exec=dwm
+Icon=dwm
+Type=XSession
+#+end_example
+
+* Configuring dwm
+
+If you installed dwm with pacman, then the source code can be found in /opt/dwm.  If you downloaded the source and built dwm yourself, then the source is in the directory that you downloaded.  The configuration of dwm is done by editing the config.def.h and (re)compiling the source code.
+
+=sudo make install=
+
+* Adding an autostart file
+dwm has been patched in such a way that it looks for an autostart file at: $HOME/.dwm/autostart.sh
+
+You will need to create this file and the directory that it is located.  An example autostart.sh is included below:
+
+#+begin_example
+#! /bin/bash
+picom &
+nitrogen --restore &
+dwmblocks &
+#+end_example
+
+The example autostart.sh above launches the compton compositor, sets the wallpaper with nitrogen and launches dwmblocks to add some widgets to our dwm panel.  Obviously, you would need to install compton and nitrogen to use those programs in your autostart.  And you would need to install [[https://github.com/tzurita/dwmblocks][dwmblocks]] to use it.  To use my dwmblocks, you also need to download the scripts found [[https://github.com/tzurita/dotfiles/-/tree/master/.local/bin][here]].
